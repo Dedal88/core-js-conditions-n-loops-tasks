@@ -138,8 +138,42 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let total;
+  const numbers = {
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII',
+    8: 'VIII',
+    9: 'IX',
+    10: 'X',
+  };
+  if (num <= 10) {
+    return numbers[num];
+  }
+  if (num <= 20 && num > 10) {
+    if (num === 20) {
+      return 'XX';
+    }
+    const secNum = num - 10;
+    return `X${numbers[secNum]}`;
+  }
+  if (num <= 30 && num > 20) {
+    if (num === 30) {
+      return 'XXX';
+    }
+    const secNum = num - 20;
+    return `XX${numbers[secNum]}`;
+  }
+  if (num <= 39 && num > 30) {
+    const secNum = num - 30;
+    total = `XXX${numbers[secNum]}`;
+  }
+  return total;
 }
 
 /**
@@ -157,8 +191,56 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let total = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '1':
+        total += 'one';
+        break;
+      case '2':
+        total += 'two';
+        break;
+      case '3':
+        total += 'three';
+        break;
+      case '4':
+        total += 'four';
+        break;
+      case '5':
+        total += 'five';
+        break;
+      case '6':
+        total += 'six';
+        break;
+      case '7':
+        total += 'seven';
+        break;
+      case '8':
+        total += 'eight';
+        break;
+      case '9':
+        total += 'nine';
+        break;
+      case '0':
+        total += 'zero';
+        break;
+      case '-':
+        total += 'minus';
+        break;
+      case '.':
+      case ',':
+        total += 'point';
+        break;
+
+      default:
+        break;
+    }
+    if (i !== numberStr.length - 1) {
+      total += ' ';
+    }
+  }
+  return total;
 }
 
 /**
